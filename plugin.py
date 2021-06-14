@@ -48,6 +48,7 @@ class BasePlugin:
     def _updateDevice(self, Unit, nValue, sValue):
         if (Unit in Devices):
             Devices[Unit].Update(nValue=nValue, sValue=str(sValue))
+            Domoticz.Debug("Updated device " + str(nValue) + " with value: " + str(sValue))
 
 
     def _disconnect(self, Connection):
@@ -133,7 +134,8 @@ class BasePlugin:
                     temperature = round(conditions["temperature"], 1)
                     humidity    = int(conditions["humidity"])
 
-                    self._updateDevice(Unit=self._conditionsUnit, nValue=0, sValue=str(temperature) + ';' + str(humidity))
+                    value = str(temperature) + ';' + str(humidity) + ';1'
+                    self._updateDevice(Unit=self._conditionsUnit, nValue=0, sValue=value)
                     self._lastConditionsTimestamp = time.monotonic()
                 else:
                     Domoticz.Error("Invalid received format for conditions")

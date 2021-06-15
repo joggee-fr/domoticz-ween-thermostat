@@ -71,6 +71,16 @@ class BasePlugin:
                         "User-Agent": 'Domoticz/1.0'
                     }
                 }
+    
+
+    def _getHumidityStatus(self, humidity):
+        if humidity < 30:
+            return 2
+
+        if humidity > 70:
+            return 3
+        
+        return 1
 
 
     def onStart(self):
@@ -134,7 +144,7 @@ class BasePlugin:
                     temperature = round(conditions["temperature"], 1)
                     humidity    = int(conditions["humidity"])
 
-                    value = str(temperature) + ';' + str(humidity) + ';1'
+                    value = str(temperature) + ';' + str(humidity) + ';' + str(self._getHumidityStatus(humidity))
                     self._updateDevice(Unit=self._conditionsUnit, nValue=0, sValue=value)
                     self._lastConditionsTimestamp = time.monotonic()
                 else:

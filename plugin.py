@@ -5,10 +5,10 @@
 <plugin key="WeenThermostat" name="Ween Thermostat" author="joggee-fr" version="0.0.1" externallink="https://gitlab.com/joggee-fr/ween-thermostat-domoticz">
     <description>
         <h2>Ween Thermostat</h2><br/>
-        The plugin is in development. 
+        This plugin add devices for the Ween Thermostat based on the WiFi local API.
     </description>
     <params>
-        <param field="Address" label="IP Address" width="600px" required="true"/>
+        <param field="Address" label="IP address" width="600px" required="true"/>
         <param field="Mode2" label="Token" width="600px" required="true"/>
         <param field="Mode6" label="Debug" width="75px">
             <options>
